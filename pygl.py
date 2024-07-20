@@ -38,7 +38,6 @@ class App:
             fovy = 45, aspect = 640/480,
             near = 0.1, far = 10, dtype=np.float32
         )
-        print(projection_transform)
 
         glUniformMatrix4fv(
             glGetUniformLocation(self.shader, "projection"),
@@ -48,7 +47,7 @@ class App:
         self.modelMatrixLocation = glGetUniformLocation(self.shader, "model")
 
         self.mainloop()
-        self.quit
+        self.quit()
     
     def createShader(self, vertexFilepath, fragmentFilepath):
 
@@ -213,7 +212,7 @@ class Material:
         glBindTexture(GL_TEXTURE_2D, self.texture)
 
     def destroy(self):
-        glDeleteTextures(1, self.texture)
+        glDeleteTextures(1, (self.texture,))
 
 if __name__ == "__main__":
     myApp = App()
